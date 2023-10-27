@@ -1,0 +1,137 @@
+.mainContainer{
+    width: 14%;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.upperSideBar{
+    max-height: 80%;
+    background-color: #04364A;
+    color: white;
+    padding: 7% 7%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    gap: 2%;
+    -webkit-border-bottom-right-radius: 30px;
+    -moz-border-radius-bottomright: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.lowerSideBar{
+    background-color: #04364A;
+    color: white;
+    padding: 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+
+    -webkit-border-top-right-radius: 30px;
+    -moz-border-radius-topright: 30px;
+    border-top-right-radius: 30px;
+}
+
+.noMargin{
+    margin: 0;
+}
+
+.controllButton{
+    display: flex;
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    cursor: pointer;
+}
+
+.addBtn {
+    display: flex;
+    appearance: none;
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+    margin-top: 1%;
+  }
+  
+  .addBtn:disabled {
+    pointer-events: none;
+  }
+
+  .stackBtn {
+    appearance: none;
+    /* background-color: #000000; */
+    border: transparent;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+}
+  
+.stackBtn:disabled {
+pointer-events: none;
+}
+
+.centeredContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    font-size: large;
+}
+
+
+.stackContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.7rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.stackContainer::-webkit-scrollbar {
+    display: none;
+}

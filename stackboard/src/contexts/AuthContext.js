@@ -1,6 +1,6 @@
 "use client"
 
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth,githubProvider,googleProvider } from '@/config/firebase';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -26,6 +26,16 @@ export function AuthProvider({ children }) {
 
     function signin(email, password){
         return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    function logout(){
+        // return signOut(auth)
+
+        signOut(auth).then(() => {
+            router.push('/login')
+        }).catch((error) => {
+            alert(error.message)
+        });
     }
 
     async function loginWithGoogle(){
@@ -55,6 +65,7 @@ export function AuthProvider({ children }) {
         currentUser,
         signup,
         signin,
+        logout,
         loginWithGoogle,
         loginWithGitHub
     };
