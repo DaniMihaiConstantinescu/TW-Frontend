@@ -121,7 +121,6 @@ transform: translateY(0);
   color: #054057;
 }
 
-
 .particleCanvas{
   height: 99%;
   border-radius: 25px;
@@ -133,4 +132,16 @@ transform: translateY(0);
   height: 70%;
   /* border-radius: 25px; */
   overflow: hidden;
+}
+
+@media (max-width: 40em){
+  .particleContainer{
+    display: none;
+  }
+  
+  .mainContainer{
+    padding: 0 7%;
+    align-items: flex-start; 
+    padding-top: 5%;
+  }
 }

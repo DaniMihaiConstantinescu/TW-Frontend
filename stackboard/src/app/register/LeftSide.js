@@ -11,9 +11,9 @@ export default function LeftSide() {
   return (
     <div className={styles.leftContainer}>
       <h1 className={styles.colBlue}>StackBoard</h1>
-      <h3>Sign in to the account</h3>
+      <h3>Create an account</h3>
 
-      <AuthForm action="login"/>
+      <AuthForm action="register"/>
 
       <br></br>
 
@@ -24,7 +24,7 @@ export default function LeftSide() {
       <br></br>
       <br></br>
 
-      <Link href='/register' className={styles.linkUrl}><span className={styles.colBlack}>Don’t have an account?</span> Create an account</Link>
+      <Link href='/login' className={styles.linkUrl}><span className={styles.colBlack}>Already have an account?</span> Login</Link>
 
     </div>
   );

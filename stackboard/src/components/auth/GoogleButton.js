@@ -1,8 +1,11 @@
+import { useAuth } from '@/contexts/AuthContext'
 import styles from '@/css/auth.module.css'
 
 export default function GoogleButton() {
+  const {loginWithGoogle} = useAuth()
+
   return (
-    <button className={styles.authBtn} role="button">
+    <button onClick={loginWithGoogle} className={styles.authBtn} role="button">
         <div className={styles.centeredContent}>
           <img
             width="35"

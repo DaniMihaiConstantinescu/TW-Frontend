@@ -4,6 +4,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import styled from '@emotion/styled';
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const InputField = styled(TextField)({
     '& label.Mui-focused': {
@@ -25,11 +27,35 @@ const InputField = styled(TextField)({
     },
   });
 
-export default function AuthForm() {
+function handleError(e){
+
+  switch (e.code) {
+    case "auth/weak-password":
+      alert("Password should be at least 6 characters");
+      break;
+
+    case "auth/email-already-in-use":
+      alert("Email is already used");
+      break;
+
+    case "auth/invalid-login-credentials":
+      alert("Email or Password is invalid");
+      break;
+
+    default:
+      break;
+  }
+}
+
+export default function AuthForm({action}) {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (event) => {
+  const { signup, signin } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
     event.preventDefault(); 
 
     const user = {
@@ -37,12 +63,36 @@ export default function AuthForm() {
       "password": event.target.password.value
     }
 
-    console.log(user);
+    if (action == "register") {
+
+      try {
+        setLoading(true)
+        await signup(user.email, user.password)
+        router.push('/')
+      } catch(e) {
+        handleError(e)
+      }
+      setLoading(false)
+
+    }else if (action == "login") {
+      
+      try {
+        setLoading(true)
+        await signin(user.email, user.password)
+        router.push('/')
+      } catch(e) {
+        handleError(e)
+      }
+      setLoading(false)
+
+    }
+
 
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+
         <InputField name='email' type='email' label="Email"/>
 
         <InputField
@@ -63,7 +113,7 @@ export default function AuthForm() {
           }}
         />
 
-        <input type="submit" value='Submit' className={styles.submitBtn}/>
+        <input disabled={loading} type="submit" value='Submit' className={styles.submitBtn}/>
       </form>
   )
 }

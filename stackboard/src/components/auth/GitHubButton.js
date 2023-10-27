@@ -1,8 +1,11 @@
+import { useAuth } from '@/contexts/AuthContext'
 import styles from '@/css/auth.module.css'
 
 export default function GitHubButton() {
+  const {loginWithGitHub} = useAuth()
+
   return (
-    <button className={styles.authBtn} role="button">
+    <button onClick={loginWithGitHub} className={styles.authBtn} role="button">
         <div className={styles.centeredContent}>
           <img 
             width="35" 
