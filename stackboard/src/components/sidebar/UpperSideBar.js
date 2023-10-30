@@ -79,8 +79,14 @@ export default function UpperSideBar() {
         <div className={styles.stackContainer}>
 
           {stacks?.map((stack) => 
-            <StackButton key={stack.id} color={stack.color} name={stack.name} />
+            <StackButton 
+                key={stack.id} 
+                id={stack.id}
+                name={stack.name} 
+                color={stack.color} 
+            />
           )}
+
         </div>
 
     </div>

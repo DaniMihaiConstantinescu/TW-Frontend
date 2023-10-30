@@ -1,0 +1,33 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1% 2%;
+    background-color: #F1F2F6;
+    color: #2F3542;
+    max-height: 95vh;
+}
+
+.headerContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 0.5%;
+}
+
+.idContainer{
+    background-color: #DCDCDC;
+    color: #3A3A3A;
+    font-size: large;
+    padding: 0.1% 1.2%;
+    border-radius: 4px;
+}
+
+.space{
+    flex-grow: 1;
+}
+
+.pointer{
+    cursor: pointer;
+}
