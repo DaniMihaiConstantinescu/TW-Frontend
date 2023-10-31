@@ -1,7 +1,6 @@
 import styles from "@/css/mainframe.module.css"
 
 export default function GraphDetails({content}) {
-    console.log(content);
 
     const formattedDate = new Date(content.createdAt).toLocaleString("en-GB", {
         year: "numeric",
