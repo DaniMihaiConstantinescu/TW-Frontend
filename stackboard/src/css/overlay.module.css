@@ -1,0 +1,77 @@
+.headerContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.noMargin{
+  margin: 0;
+}
+
+.textLabel{
+  margin: 0;
+  font-size: large;
+}
+
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contentContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rowContainer{
+  display: flex;
+  align-items: center;
+  gap: 3%;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.submitBtn {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-width: 0;
+  outline: none;
+  padding: 2% 10%;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  will-change: transform;
+}
+
+.submitBtn:disabled {
+pointer-events: none;
+}
+
+.submitBtn:hover {
+box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+transform: translateY(-2px);
+}
+
+.submitBtn:active {
+box-shadow: none;
+transform: translateY(0);
+}
