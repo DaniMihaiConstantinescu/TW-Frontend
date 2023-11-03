@@ -23,6 +23,7 @@ export default function AddStackModal({ handleClose }) {
         "color": stackColor
     }
 
+    // put in db (and probably refresh)
     console.log(stack);
 
     handleClose();

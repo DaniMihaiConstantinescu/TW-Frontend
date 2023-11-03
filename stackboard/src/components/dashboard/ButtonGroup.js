@@ -1,5 +1,8 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import AddImageButton from './buttons/AddImageButton';
+import AddFileButton from './buttons/AddFileButton';
+import AddTextButton from './buttons/AddTextButton';
 
 export default function ButtonGroupHeader({id}) {
     const buttonStyles = {
@@ -17,18 +20,9 @@ export default function ButtonGroupHeader({id}) {
 
     return (
         <ButtonGroup aria-label="button group">
-            <Button sx={buttonStyles}>
-                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/plus-math--v1.png" alt="plus-math--v1"/>
-                Add Image
-            </Button>
-            <Button sx={buttonStyles}>
-                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/plus-math--v1.png" alt="plus-math--v1"/>
-                Add File
-            </Button>
-            <Button sx={buttonStyles}>
-                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/plus-math--v1.png" alt="plus-math--v1"/>
-                Add Text
-            </Button>
+            <AddImageButton stackId={id}/>
+            <AddFileButton stackId={id}/>
+            <AddTextButton stackId={id}/>
         </ButtonGroup>
     )
 }

@@ -24,7 +24,6 @@ export default function AddButton() {
 
   return (
     <button onClick={handleOpen} className={styles.addBtn} role="button">
-
         <Modal
           open={open}
           onClose={handleClose}
@@ -35,8 +34,6 @@ export default function AddButton() {
             <AddStackModal handleClose={handleClose}/>
           </Box>
         </Modal>
-
-
 
         <div className={styles.centeredContent}>
             <img width="30" height="30" src="https://img.icons8.com/android/24/FFFFFF/plus.png" alt="plus"/>

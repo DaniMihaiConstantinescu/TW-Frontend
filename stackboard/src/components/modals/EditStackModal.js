@@ -24,7 +24,7 @@ export default function EditStackModal({ stackId, initColor, initName, handleClo
         "color": stackColor
     }
 
-    // Update in db
+    // Update in db (and maybe refresh)
     console.log(stack);
 
     handleClose();
@@ -33,7 +33,7 @@ export default function EditStackModal({ stackId, initColor, initName, handleClo
   return (
     <div className={styles.mainContainer}>
       <div className={styles.headerContainer}>
-        <h2 className={styles.noMargin}>Create Stack</h2>
+        <h2 className={styles.noMargin}>Edit Stack</h2>
         <img
           onClick={handleIconClick}
           width="20"
@@ -66,7 +66,7 @@ export default function EditStackModal({ stackId, initColor, initName, handleClo
                 />
             </div>
 
-            <input type="submit" value='Create' className={styles.submitBtn}/>
+            <input type="submit" value='Edit' className={styles.submitBtn}/>
         </form>
       </div>
     </div>
