@@ -1,14 +1,26 @@
-import styles from '@/css/settings.module.css'
+"use client"
 
 import React from 'react'
-import SettingsHeader from './SettingsHeader'
-import SettingsMainContainer from './SettingsMainContainer'
+import { useAuth } from '@/contexts/AuthContext'
+import NoUser from '@/components/warnings/NoUser'
+import SettingsStandard from './SettingsStandard'
 
 export default function page() {
+
+  const {currentUser} = useAuth()
+
   return (
-    <div className={styles.mainFrame}>
-        <SettingsHeader />
-        <SettingsMainContainer />
-    </div>
-  )
+    <>
+      {currentUser == null ? (
+        <NoUser/>
+      ) : (
+        <>
+          <SettingsStandard />
+        </>
+      )}
+    </>
+  );
+
+
+ 
 }

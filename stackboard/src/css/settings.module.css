@@ -114,3 +114,21 @@ pointer-events: none;
     gap: 5%;
     font-size: large;
 }
+
+
+@media (max-width: 80em){
+    .info{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 50em){
+    .mainContainer{
+        width: 75%;
+        height: 85%;
+    }
+
+    .info{
+        flex-direction: column;
+    }
+}

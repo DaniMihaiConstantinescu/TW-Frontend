@@ -11,8 +11,6 @@ function getProfile(){
 
   const {currentUser} = useAuth()
 
-  console.log(currentUser);
-
   const profile = {
     "email": currentUser.email,
     "apikey": currentUser.uid,
@@ -26,11 +24,12 @@ function getProfile(){
 export default function SettingsMainContainer() {
 
   const profile = getProfile()
+  const isPremium = false
 
   return (
     <div className={styles.contentFrame}>
-      <div className={styles.mainContainer}>
-
+      <div className={styles.mainContainer} style={isPremium ? { justifyContent: 'center', height: '60%' } : null}>
+ 
         <div className={styles.section}>
           <h1 className={styles.sectionTitle}>Profile</h1>
 
@@ -47,17 +46,20 @@ export default function SettingsMainContainer() {
 
           <div className={styles.info}>
             <span><b>Number of Stacks:</b> {profile.stacksNo}</span>
-            <span><b>Storage:</b> {profile.storage} / 250 MB</span>
+            <span><b>Storage:</b> {profile.storage} {isPremium ? ('MB') : (' / 250 MB')}</span>
           </div>
         </div>
 
-        <div className={styles.spacer}></div>
+        {!isPremium && <>
+            <div className={styles.spacer}></div>
 
-        <button className={styles.stackBtn} role="button">
-          <div className={styles.centeredContent}>
-              <span>Upgrade to Premium</span>
-          </div>
-        </button>
+            <button className={styles.stackBtn} role="button">
+              <div className={styles.centeredContent}>
+                  <span>Upgrade to Premium</span>
+              </div>
+            </button>
+          </>
+        }
 
       </div>
     </div>
