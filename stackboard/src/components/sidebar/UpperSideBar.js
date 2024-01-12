@@ -1,75 +1,29 @@
 import styles from "@/css/sidebar.module.css"
 import AddButton from "./buttons/AddButton"
 import StackButton from "./buttons/StackButton"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
-function getStacks(){
-  return [
-    {
-      "id": 1,
-      "name": "Stack 1",
-      "color": "#21AA27"
-    },
-    {
-      "id": 2,
-      "name": "Stack 2",
-      "color": "#A4B0BE"
-    },
-    {
-      "id": 3,
-      "name": "Stack 3",
-      "color": "#21AA27"
-    },
-    {
-      "id": 4,
-      "name": "Stack 4",
-      "color": "#C3BF5E"
-    },
-    {
-      "id": 5,
-      "name": "Stack 5",
-      "color": "#21AA27"
-    },
-    {
-      "id": 6,
-      "name": "Stack 6",
-      "color": "#21AA27"
-    },
-    {
-      "id": 7,
-      "name": "Stack 7",
-      "color": "#21AA27"
-    },
-    {
-      "id": 8,
-      "name": "Stack 8",
-      "color": "#21AA27"
-    },
-    {
-      "id": 9,
-      "name": "Stack 9",
-      "color": "#21AA27"
-    },
-    {
-      "id": 10,
-      "name": "Stack 10",
-      "color": "#21AA27"
-    },
-    {
-      "id": 11,
-      "name": "Stack 11",
-      "color": "#21AA27"
-    },
-    {
-      "id": 12,
-      "name": "Stack 12",
-      "color": "#21AA27"
-    },
-  ]
-}
 
 export default function UpperSideBar() {
 
-  const stacks = getStacks()
+  const [stacks, setStacks]  = useState([])
+
+  useEffect(() => {
+    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + 'raduAPI')
+      .then((res) => {
+        console.log(res.data.stacks);
+
+        const stackArray = Object.entries(res.data.stacks || []).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+
+        setStacks(stackArray);
+
+      })
+  }, [])
+
 
   return (
     <div className={styles.upperSideBar}>
@@ -78,10 +32,11 @@ export default function UpperSideBar() {
 
         <div className={styles.stackContainer}>
 
-          {stacks?.map((stack) => 
+
+          {stacks?.map((stack,index) => 
             <StackButton 
-                key={stack.id} 
-                id={stack.id}
+                key={index} 
+                id={index}
                 name={stack.name} 
                 color={stack.color} 
             />
