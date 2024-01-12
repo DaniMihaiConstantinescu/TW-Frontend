@@ -12,15 +12,12 @@ export default function UpperSideBar() {
   useEffect(() => {
     axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + 'raduAPI')
       .then((res) => {
-        console.log(res.data.stacks);
+        
+        // console.log(res.data.stacks.filter((stack) => stack !== null));
 
-        const stackArray = Object.entries(res.data.stacks || []).map(([key, value]) => ({
-          id: key,
-          ...value,
-        }));
-
-        setStacks(stackArray);
-
+        if (res.data.stacks) {
+          setStacks(res.data.stacks.filter((stack) => stack !== null));
+        }
       })
   }, [])
 
@@ -33,13 +30,13 @@ export default function UpperSideBar() {
         <div className={styles.stackContainer}>
 
 
-          {stacks?.map((stack,index) => 
-            <StackButton 
-                key={index} 
-                id={index}
-                name={stack.name} 
-                color={stack.color} 
-            />
+          {stacks?.map((stack) => 
+              <StackButton 
+                  key={stack.id} 
+                  id={stack.id}
+                  name={stack.name} 
+                  color={stack.color} 
+              />
           )}
 
         </div>

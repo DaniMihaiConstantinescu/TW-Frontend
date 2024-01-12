@@ -2,7 +2,7 @@ import styles from "@/css/mainframe.module.css"
 
 export default function TextDetails({content}) {
   
-  const {title, createdAt, text} = content
+  const {title, createdAt, description} = content
 
   const formattedDate = new Date(createdAt).toLocaleString("en-GB", {
     year: "numeric",
@@ -20,7 +20,7 @@ export default function TextDetails({content}) {
       <h3 className={styles.noMargin}>{title}</h3>
       <p className={styles.noMargin}>{"Created at " + formattedDate}</p>
       <br></br>
-      <h4 className={styles.noMargin}>{text}</h4>
+      <h4 className={styles.noMargin}>{description}</h4>
       <br></br>
     </div>
   )

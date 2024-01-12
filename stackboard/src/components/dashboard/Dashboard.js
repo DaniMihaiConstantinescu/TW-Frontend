@@ -1,6 +1,8 @@
 import styles from '@/css/dashboard.module.css'
 import Header from './Header'
 import MainFrame from './MainFrame'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function getStack(id){
     return {
@@ -44,7 +46,19 @@ function getStack(id){
 
 export default function Dashboard({id}) {
 
-    const stack = getStack(id)
+    // console.log(id);
+    // const stack = getStack(id)
+
+    const [stack, setNewStack] = useState({})
+
+    useEffect(() => {
+        axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + 'raduAPI' + '/' + (id) )
+          .then((res) => {
+            // console.log(res.data);
+            setNewStack(res.data);
+          })
+      }, [])
+
 
     return (
     <div className={styles.mainContainer}>

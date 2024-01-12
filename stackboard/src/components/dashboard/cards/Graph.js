@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "@/css/mainframe.module.css"
-import { LineChart } from "@mui/x-charts";
+import { LineChart } from "@mui/x-charts"
 
 function extractXYValues(data) {
     const xValues = [];
@@ -22,7 +22,7 @@ function extractXYValues(data) {
 
 export default function Graph({content}) {
 
-    const [xValues, yValues] = extractXYValues(content.keyframes)
+    const [xValues, yValues] = extractXYValues(content.keyFrames)
 
     return (
         <div className={styles.lineChart}>

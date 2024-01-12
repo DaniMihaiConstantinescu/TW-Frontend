@@ -22,7 +22,7 @@ export default function GraphDetails({content}) {
             </div>
             <p className={styles.noMargin}>{"Created at " + formattedDate}</p>
             <br></br>
-            <h4 className={styles.noMargin}>{content.text}</h4>
+            <h4 className={styles.noMargin}>{content.description}</h4>
             <br></br>
         </div>
     )
