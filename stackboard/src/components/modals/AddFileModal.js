@@ -1,8 +1,17 @@
 import styles from "@/css/overlay.module.css";
 import { Textarea } from "@mui/joy";
 import { TextField } from "@mui/material";
+import { fileDB } from "@/config/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"; 
+import { v4 } from "uuid";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import axios from "axios";
 
 export default function AddFileModal({ stackId, handleClose }) {
+
+  const [path, setPath] = useState("");
+  const {currentUser} = useAuth()
 
   const handleIconClick = (e) => {
     e.stopPropagation();
@@ -10,18 +19,44 @@ export default function AddFileModal({ stackId, handleClose }) {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    const fileRef = ref(fileDB, `files/${v4()}`);
 
-    const image = {
-        "stackId": stackId,
-        "description": e.target.description.value,
-        "file": e.target.file.value
-    }
+    uploadBytes(fileRef, path).then((snapshot) => {
+    
+      getDownloadURL(fileRef).then((downloadURL) => {
 
-    // add image to firestore 
-    // + add to db  
-    console.log(image);
+        const user = {
+          "uid": currentUser.uid,
+          "stackId": stackId,
+        }
+
+        const image = {
+          "title": path.name,
+          "description": e.target.description.value,
+          "url": downloadURL,
+          "type": "StackBoard.Checkpoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+        }
+
+        console.log(user);
+        console.log(image);
+
+        const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + user.uid + '/' + user.stackId;
+        const respose = axios.post( apiURL, image);
+
+        console.log(apiURL);
+        console.log(respose);
+
+
+
+      }).catch((error) => {
+        console.error('Error getting download URL:', error);
+      });
+    }).catch((error) => {
+      console.error('Error uploading file:', error);
+    }); 
 
     handleClose();
   }
@@ -29,7 +64,7 @@ export default function AddFileModal({ stackId, handleClose }) {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.headerContainer}>
-        <h2 className={styles.noMargin}>Add Image</h2>
+        <h2 className={styles.noMargin}>Add File</h2>
         <img
           onClick={handleIconClick}
           width="20"
@@ -55,7 +90,9 @@ export default function AddFileModal({ stackId, handleClose }) {
 
             <div className={styles.rowContainer}>
                 <p className={styles.textLabel}>File Location: </p>
-                <input type="file" name="file"/>
+                <input type="file" name="file"
+                  onChange={(e) => setPath(e.target.files[0])}
+                />
             </div>
 
             <br></br>

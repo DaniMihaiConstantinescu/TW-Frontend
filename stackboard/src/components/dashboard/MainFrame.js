@@ -18,7 +18,7 @@ export default function MainFrame({stack}) {
 
 
     const [content, setContent] = useState([]);
-    console.log(stack);
+    // console.log(stack);
 
     const typesMap = {
         "message": "StackBoard.Message, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
