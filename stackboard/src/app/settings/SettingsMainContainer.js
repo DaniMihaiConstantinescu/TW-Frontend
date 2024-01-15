@@ -30,7 +30,7 @@ export default function SettingsMainContainer() {
   const [stacksNo, setstacksNo] = useState(0);
 
   useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/count/' + 'raduAPI')
+    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/count/' + profile.apikey)
       .then((res) => {
         
         // console.log(res.data.stacksNumber);

@@ -12,7 +12,7 @@ export default function UpperSideBar() {
   const {currentUser} = useAuth()
 
 
-  useEffect(() => {
+  const fetchData = async () => {
     axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + currentUser.uid)
       .then((res) => {
         
@@ -26,7 +26,18 @@ export default function UpperSideBar() {
             setStacks(array.filter((stack) => stack !== null));
           }
       })
-  }, [])
+  }
+
+  useEffect(() => {
+    fetchData();
+
+    const intervalId = setInterval(() => {
+        // console.log("New Data");
+      fetchData();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [currentUser.uid]); 
 
 
   return (
