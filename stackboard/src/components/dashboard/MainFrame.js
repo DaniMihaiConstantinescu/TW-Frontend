@@ -8,15 +8,6 @@ import CheckCard from "./cards/CheckCard";
 export default function MainFrame({stack}) {
 
 
-    const check = {
-        "createdAt": "2024-01-12T15:33:35.6041302+02:00",
-        "description": "this is just for test only",
-        "title": "Checkpoint",
-        "type": "StackBoard.Message, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
-    }
-
-
-
     const [content, setContent] = useState([]);
     // console.log(stack);
 
@@ -52,8 +43,6 @@ export default function MainFrame({stack}) {
                     <GraphCard key={index} number={index + 1} content={node} />
                 ) : null
             )}
-
-            <CheckCard number={12} content={check} />
 
         </div>
     )

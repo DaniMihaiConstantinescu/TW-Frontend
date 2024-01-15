@@ -3,6 +3,7 @@ import Header from './Header'
 import MainFrame from './MainFrame'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useAuth } from '@/contexts/AuthContext'
 
 function getStack(id){
     return {
@@ -50,9 +51,11 @@ export default function Dashboard({id}) {
     // const stack = getStack(id)
 
     const [stack, setNewStack] = useState({})
+    const {currentUser} = useAuth()
+
 
     useEffect(() => {
-        axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + 'raduAPI' + '/' + (id) )
+        axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + currentUser.uid + '/' + (id) )
           .then((res) => {
             // console.log(res.data);
             setNewStack(res.data);

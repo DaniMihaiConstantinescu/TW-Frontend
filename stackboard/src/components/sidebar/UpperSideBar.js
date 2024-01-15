@@ -3,14 +3,17 @@ import AddButton from "./buttons/AddButton"
 import StackButton from "./buttons/StackButton"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useAuth } from "@/contexts/AuthContext"
 
 
 export default function UpperSideBar() {
 
   const [stacks, setStacks]  = useState([])
+  const {currentUser} = useAuth()
+
 
   useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + 'raduAPI')
+    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + currentUser.uid)
       .then((res) => {
         
         // console.log(res.data.stacks);

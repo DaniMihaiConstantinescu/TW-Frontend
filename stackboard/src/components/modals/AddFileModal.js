@@ -33,24 +33,22 @@ export default function AddFileModal({ stackId, handleClose }) {
           "stackId": stackId,
         }
 
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0];
+
         const image = {
           "title": path.name,
           "description": e.target.description.value,
           "url": downloadURL,
-          "type": "StackBoard.Checkpoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          "createdAt": formattedDate,
+          "type": "StackBoard.CheckPoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
         }
 
-        console.log(user);
-        console.log(image);
 
-        // const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + user.uid + '/' + user.stackId;
-        const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + 'raduAPI' + '/' + user.stackId;
+        const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + user.uid + '/' + user.stackId;
 
         const respose = axios.post( apiURL, image);
-
-        console.log(apiURL);
-        console.log(respose);
-
+        window.location.reload();
 
 
       }).catch((error) => {

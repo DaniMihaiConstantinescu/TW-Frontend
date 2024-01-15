@@ -36,50 +36,11 @@ export default function AddStackModal({ handleClose }) {
     }
 
 
-    console.log(JSON.stringify(stack));
-
-    // const url = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + stack.userAPIKey + '/' + stack.name + '/' + stack.color;
-    // console.log(url);
-
-
-    // try {
-    //   const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/add';
-      
-    //   // Sending a POST request using axios
-    //   const response = await axios.post(apiUrl, stack);
-
-    //   console.log('Response:', response.data);
-    // } catch (error) {
-    //   console.error('Error:', error.message);
-    // }
-
-    try {
-      const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/add';
-
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any additional headers if needed
-        },
-        body: JSON.stringify(stack),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-      console.log('Response:', responseData);
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
-
-
-
-    // put in db (and probably refresh)
-    // console.log(stack);
-
+    console.log(stack);
+    const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/new';
+    axios.post( apiURL, stack);
+    
+    window.location.reload();
     handleClose();
   }
 
