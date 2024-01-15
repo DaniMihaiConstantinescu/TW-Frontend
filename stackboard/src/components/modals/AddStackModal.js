@@ -1,6 +1,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import styles from "@/css/overlay.module.css";
 import { TextField } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 
 export default function AddStackModal({ handleClose }) {
@@ -35,39 +36,44 @@ export default function AddStackModal({ handleClose }) {
     }
 
 
-    // console.log(JSON.stringify(stack));
+    console.log(JSON.stringify(stack));
 
     // const url = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + stack.userAPIKey + '/' + stack.name + '/' + stack.color;
     // console.log(url);
 
 
+    // try {
+    //   const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/add';
+      
+    //   // Sending a POST request using axios
+    //   const response = await axios.post(apiUrl, stack);
+
+    //   console.log('Response:', response.data);
+    // } catch (error) {
+    //   console.error('Error:', error.message);
+    // }
+
     try {
+      const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/add';
 
-      const url = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + stack.userAPIKey + '/' + stack.name + '/' + stack.color;
-
-      const response = await fetch(url , {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              // Add any additional headers if needed
-          },
-          body: JSON.stringify(stack),
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any additional headers if needed
+        },
+        body: JSON.stringify(stack),
       });
 
       if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const responseData = await response.json();
-      console.log(responseData);
-
-      // Perform any additional actions after successful POST
-
-  } catch (error) {
+      console.log('Response:', responseData);
+    } catch (error) {
       console.error('Error:', error.message);
-  }
-
-
+    }
 
 
 

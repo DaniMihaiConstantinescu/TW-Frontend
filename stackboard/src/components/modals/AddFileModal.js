@@ -43,7 +43,9 @@ export default function AddFileModal({ stackId, handleClose }) {
         console.log(user);
         console.log(image);
 
-        const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + user.uid + '/' + user.stackId;
+        // const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + user.uid + '/' + user.stackId;
+        const apiURL = process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + 'raduAPI' + '/' + user.stackId;
+
         const respose = axios.post( apiURL, image);
 
         console.log(apiURL);
