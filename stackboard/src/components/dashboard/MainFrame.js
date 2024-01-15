@@ -50,7 +50,6 @@ export default function MainFrame({stack}) {
                     
                 ) : node.type === typesMap.graph ? (
                     <GraphCard key={index} number={index + 1} content={node} />
-                    // <p key={index}>graph</p>
                 ) : null
             )}
 

@@ -2,8 +2,9 @@
 
 import { useAuth } from '@/contexts/AuthContext'
 import styles from '@/css/settings.module.css'
+import axios from 'axios'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function getProfile(){
 
@@ -26,6 +27,19 @@ export default function SettingsMainContainer() {
   const profile = getProfile()
   const isPremium = false
 
+  const [stacksNo, setstacksNo] = useState(0);
+
+  useEffect(() => {
+    axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/count/' + 'raduAPI')
+      .then((res) => {
+        
+        // console.log(res.data.stacksNumber);
+
+        setstacksNo(res.data.stacksNumber);
+
+      })
+  }, [])
+
   return (
     <div className={styles.contentFrame}>
       <div className={styles.mainContainer} style={isPremium ? { justifyContent: 'center', height: '60%' } : null}>
@@ -45,7 +59,7 @@ export default function SettingsMainContainer() {
           <h1 className={styles.sectionTitle}>Stacks</h1>
 
           <div className={styles.info}>
-            <span><b>Number of Stacks:</b> {profile.stacksNo}</span>
+            <span><b>Number of Stacks:</b> {stacksNo}</span>
             <span><b>Storage:</b> {profile.storage} {isPremium ? ('MB') : (' / 250 MB')}</span>
           </div>
         </div>

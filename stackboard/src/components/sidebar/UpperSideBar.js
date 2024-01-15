@@ -13,11 +13,15 @@ export default function UpperSideBar() {
     axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/all_stacks/' + 'raduAPI')
       .then((res) => {
         
-        // console.log(res.data.stacks.filter((stack) => stack !== null));
+        // console.log(res.data.stacks);
 
-        if (res.data.stacks) {
-          setStacks(res.data.stacks.filter((stack) => stack !== null));
-        }
+        if(res.data == null)
+          setStacks([])
+        else
+          if (res.data.stacks) {
+            const array = Object.values(res.data.stacks);
+            setStacks(array.filter((stack) => stack !== null));
+          }
       })
   }, [])
 
