@@ -41,7 +41,7 @@ export default function AddFileModal({ stackId, handleClose }) {
           "description": e.target.description.value,
           "url": downloadURL,
           "createdAt": formattedDate,
-          "type": "StackBoard.CheckPoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          "type": "StackBoard.Checkpoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
         }
 
 

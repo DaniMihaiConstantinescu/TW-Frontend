@@ -4,10 +4,7 @@ export default function CheckDetails({content}) {
   
 
   const {title, createdAt, description} = content
-  // var url = ""
-
-  // if( content.hasOwnProperty('url') )
-  //   url = content.url  
+  // console.log(content);
 
   const formattedDate = new Date(createdAt).toLocaleString("en-GB", {
     year: "numeric",
@@ -22,8 +19,49 @@ export default function CheckDetails({content}) {
 
     if( content.hasOwnProperty('url') )
       window.open(content.url, '_blank');
+
+      if (content.url === "") {
+        if (content.hasOwnProperty('serializedModel')) {
+
+          const text = content.serializedModel;
+          const filename = 'checkpoint.txt';
+  
+          const blob = new Blob([text], { type: 'text/plain' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        }
+        else
+          window.open('', '_blank');
+        
+      }
+
     else
-      window.open('', '_blank');
+      if (content.hasOwnProperty('serializedModel')) {
+
+        const text = content.serializedModel;
+        const filename = 'checkpoint.txt';
+
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }
+      else
+        window.open('', '_blank');
+
+
+    
 
   };
 

@@ -14,6 +14,7 @@ export default function Dashboard({ id }) {
       const response = await axios.get(
         process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + currentUser.uid + '/' + id
       );
+      // console.log(response.data);
       setNewStack(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

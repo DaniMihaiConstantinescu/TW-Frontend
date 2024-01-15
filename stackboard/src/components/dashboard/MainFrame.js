@@ -15,7 +15,7 @@ export default function MainFrame({stack}) {
         "message": "StackBoard.Message, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "picture": "StackBoard.Picture, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "graph": "StackBoard.Graph, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-        "checkpoint": "StackBoard.CheckPoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "checkpoint": "StackBoard.Checkpoint, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
     }
 
     useEffect(() => {
