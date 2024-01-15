@@ -30,6 +30,7 @@ export default function Dashboard({ id }) {
     }, 3500);
 
     return () => clearInterval(intervalId);
+
   }, [currentUser.uid, id]); 
 
   return (
