@@ -5,68 +5,36 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '@/contexts/AuthContext'
 
-function getStack(id){
-    return {
-        "id": 1,
-        "name": "Stack 1",
-        "color": "#21AA27",
-        "content": [
-            {
-                "type": "text",
-                "title": "Title",
-                "createdAt": new Date("2023-07-13"),
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eligendi unde dicta quos? Delectus a facilis placeat architecto quasi praesentium minus magni, nemo molestias numquam tempore adipisci vitae dicta voluptate dolorem fugiat maxime, autem voluptates distinctio. Tenetur non rem adipisci cum voluptates maxime praesentium voluptate. Quasi hic ut sit culpa!",
-            },
-            {
-                "type": "image",
-                "title": "Image name",
-                "createdAt": new Date("2023-07-13"),
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eligendi unde dicta quos? Delectus a facilis placeat architecto quasi praesentium minus magni, nemo molestias numquam tempore adipisci vitae dicta voluptate dolorem fugiat maxime, autem voluptates distinctio.",
-                "url": "https://analysisfunction.civilservice.gov.uk/wp-content/uploads/2022/12/pie-bar.svg"
-            },
-            {
-                "type":"graph",
-                "title": "Graph Title",
-                "createdAt": "2023-07-13",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eligendi unde dicta quos? Delectus a facilis placeat architecto quasi praesentium minus magni, nemo molestias numquam tempore adipisci vitae dicta voluptate dolorem fugiat maxime, autem voluptates distinctio.",
-                "xLabel": "Label1",
-                "yLabel": "Label2",
-                "keyframes": [
-                  { "x": 10, "y": 20 },
-                  { "x": 30, "y": 40 },
-                  { "x": 50, "y": 70 },
-                  { "x": 70, "y": 90 },
-                  { "x": 100, "y": 110 },
-                  { "x": 120, "y": 130 },
-                  { "x": 140, "y": 170 },
-                ]
-              }
-        ]
+export default function Dashboard({ id }) {
+  const [stack, setNewStack] = useState({});
+  const { currentUser } = useAuth();
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + currentUser.uid + '/' + id
+      );
+      setNewStack(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
-}
+  };
 
-export default function Dashboard({id}) {
+  useEffect(() => {
+    fetchData();
 
-    // console.log(id);
-    // const stack = getStack(id)
+    const intervalId = setInterval(() => {
+        // console.log("New Data");
+      fetchData();
+    }, 3500);
 
-    const [stack, setNewStack] = useState({})
-    const {currentUser} = useAuth()
+    return () => clearInterval(intervalId);
+  }, [currentUser.uid, id]); 
 
-
-    useEffect(() => {
-        axios.get(process.env.NEXT_PUBLIC_SERVER_URL + '/stack/' + currentUser.uid + '/' + (id) )
-          .then((res) => {
-            // console.log(res.data);
-            setNewStack(res.data);
-          })
-      }, [])
-
-
-    return (
+  return (
     <div className={styles.mainContainer}>
-        <Header stack={stack}/>
-        <MainFrame stack={stack}/>
+      <Header stack={stack} />
+      <MainFrame stack={stack} />
     </div>
-    )
+  );
 }
